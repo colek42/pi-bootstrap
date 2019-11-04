@@ -21,7 +21,7 @@ spec:
     ssl:
       enabled: true
       enforced: true
-    acme:
-      enabled: true
-      email: colek42@gmail.com
-      logging: true
+    # acme:
+    #   enabled: true
+    #   email: colek42@gmail.com
+    #   logging: true
