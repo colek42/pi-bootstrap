@@ -1,0 +1,9 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: ingress
+spec:
+  values:
+    loadBalancerIP: 172.4.21.2
