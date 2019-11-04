@@ -16,7 +16,7 @@ spec:
     image:
       prefix: rook
       repository: rook/ceph
-      tag: v1.1.0.391.g1f788cf
+      tag: sha256:7604e4d6e50b0a50ee6288b18980208fb62acabe8fcc1724ff3e72c69035f16a
       pullPolicy: IfNotPresent
     csi:
       kubeletDirPath: /var/lib/rancher/k3s/agent/kubelet
