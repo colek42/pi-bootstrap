@@ -17,6 +17,6 @@ spec:
       - name: default
         protocol: layer2
         addresses:
-        - 172.4.21.2
+        - 172.4.21.2-172.4.21.2
     prometheus:
       scrapeAnnotations: true
