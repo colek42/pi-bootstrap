@@ -3,7 +3,15 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: traefik
-  namespace: ingress
+  namespace: kube-system
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~1
 spec:
+  releaseName: traefik
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: traefik
+    version: 1.78.2
   values:
     loadBalancerIP: 172.4.21.2
