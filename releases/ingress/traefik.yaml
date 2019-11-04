@@ -15,3 +15,13 @@ spec:
     version: 1.78.2
   values:
     loadBalancerIP: 172.4.21.2
+    dashboard:
+      enabled: true
+      domain: traefik.colestestserver.com
+    ssl:
+      enabled: true
+      enforced: true
+    acme:
+      enabled: true
+      email: colek42@gmail.com
+      logging: true
