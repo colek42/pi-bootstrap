@@ -10,6 +10,17 @@ spec:
     repository: https://kubernetes-charts.storage.googleapis.com
     name: nginx-ingress
     version: 1.24.3
+  values:
+  controller:
+    image:
+      repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller-arm64
+      tag: 0.26.1
+    nodeSelector:
+      role: worker
+    service:
+      type: LoadBalancer
+  defaultBackend:
+    enabled: false
   # values:
   #   controller:
   #     service:
