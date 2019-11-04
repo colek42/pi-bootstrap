@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.fluxcd.io/v1
+apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: rook-ceph
@@ -13,5 +13,10 @@ spec:
     name: rook-ceph
     version: v1.1.2
   values:
+    image:
+      prefix: rook
+      repository: rook/ceph
+      tag: v1.1.0.391.g1f788cf
+      pullPolicy: IfNotPresent
     csi:
       kubeletDirPath: /var/lib/rancher/k3s/agent/kubelet
