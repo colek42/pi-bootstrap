@@ -14,9 +14,14 @@ spec:
   values:
     configInline:
       address-pools:
-      - name: default
-        protocol: layer2
+      - name: bgp
+        protocol: bgp
         addresses:
-        - 172.4.21.2-172.4.21.100
+        - 172.4.22.2-172.4.22.100
+      peers:
+      - peer-address: 192.168.0.1
+        peer-asn: 64512
+        my-asn: 64512
     prometheus:
       scrapeAnnotations: true
+
