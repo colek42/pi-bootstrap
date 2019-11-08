@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - image: colek42/blog
-        name: colek42/blog
+        name: blog
         ports:
           - containerPort: 80
         resources:
