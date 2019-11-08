@@ -21,7 +21,7 @@ spec:
         app: blog
     spec:
       containers:
-      - image: colek42/blog:0.93-arm
+      - image: colek42/blog:0.93
         name: blog
         ports:
           - containerPort: 80
