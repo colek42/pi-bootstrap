@@ -25,3 +25,5 @@ spec:
     - name: rpcbind-tcp
       port: 111
       protocol: TCP
+  type: LoadBalancer
+  loadBalancerIP: 172.4.21.100
