@@ -18,7 +18,7 @@ spec:
       enabled: true
     loadBalancerIP: 172.4.21.2
     dashboard:
-      enabled: true
+      enabled: false
       domain: traefik.colestestserver.com
     externalTrafficPolicy: Local
     replicas: 3
