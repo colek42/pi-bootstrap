@@ -20,12 +20,12 @@ spec:
     dashboard:
       enabled: true
       domain: traefik.colestestserver.com
-      externalTrafficPolicy: Local
-      replicas: 3
-      resources:
-        requests:
-          memory: "64Mi"
-          cpu: "250m"
-        limits:
-          memory: "128Mi"
-          cpu: "500m"
+    externalTrafficPolicy: Local
+    replicas: 3
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
