@@ -1,4 +1,3 @@
-
 ---
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
@@ -33,10 +32,10 @@ spec:
     grafana:
       image:
         repository: grafana/grafana
-        tag: master
+        tag: master-ubuntu
     ingress:
       enabled: true
       hosts:
-        - grafana.colestestserver.com
+      - grafana.colestestserver.com
       paths:
-        - /
+      - /
