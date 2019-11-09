@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  namespace: nfs-server
+  name: nfs-server-alpine-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 900Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/exports"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: nfs-server
+  labels:
+    service: nfs-server-alpine-pv-claim
+  name: nfs-server-alpine-pv-claim
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 900Gi

@@ -20,7 +20,12 @@ spec:
     dashboard:
       enabled: true
       domain: traefik.colestestserver.com
-    # acme:
-    #   enabled: true
-    #   email: colek42@gmail.com
-    #   logging: true
+      externalTrafficPolicy: Local
+      replicas: 3
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "250m"
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
