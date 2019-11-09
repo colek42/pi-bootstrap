@@ -11,7 +11,7 @@ spec:
     port: 80
     targetPort: 80
     name : web
-  type: LoadBalancer 
+  type: ClusterIP
 ---
 kind: Service
 apiVersion: v1
