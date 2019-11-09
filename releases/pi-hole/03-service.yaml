@@ -1,0 +1,30 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: pihole-web-service
+  namespace : pihole
+spec:
+  selector:
+    app: pihole
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    name : web
+  type: LoadBalancer 
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: pihole-dns-service
+  namespace: pihole
+spec:
+  selector:
+    app: pihole
+  ports:
+  - protocol: UDP
+    port: 53
+    targetPort: 53
+    name : dns
+  type: LoadBalancer
+  loadBalancerIP: 172.4.21.50
