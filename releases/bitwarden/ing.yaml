@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: bitwarden
+  namespace: bitwarden
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: bitwarden.colestestserver.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: podinfo-prod-bitwarden-k8s
+          servicePort: 80
