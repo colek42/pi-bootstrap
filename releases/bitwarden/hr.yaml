@@ -47,14 +47,7 @@ spec:
       loadBalancerIP:
 
     ingress:
-      enabled: true
-      path: /
-      hosts:
-        - bitwarden.colestestserver.com
-      # tls: 
-      #   - secretName: bitwarden-tls
-      #     hosts:
-      #       - bitwarden.example
+      enabled: false
 
     resources:
       limits:
