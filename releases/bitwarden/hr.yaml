@@ -1,0 +1,71 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: bitwarden
+  namespace: bitwarden
+spec:
+  releaseName: podinfo-prod
+  chart:
+    git: git@github.com:colek42/bitwarden-k8s
+    path: /
+    ref: master
+  values:
+    replicaCount: 3
+
+    image:
+      repository: mprasil/bitwarden
+      tag: latest
+      pullPolicy: IfNotPresent
+      env:
+        SIGNUPS_ALLOWED: true
+        INVITATIONS_ALLOWED: true
+        # SERVER_ADMIN_EMAIL
+        # DOMAIN
+        # YUBICO_CLIENT_ID
+        # YUBICO_SECRET_KEY
+        # DATA_FOLDER
+        # DATABASE_URL
+        # ATTACHMENTS_FOLDER
+        # ICON_CACHE_FOLDER
+        # ROCKET_LIMITS
+        # ROCKET_WORKERS
+        # SMTP_HOST
+        # SMTP_FROM
+        # SMTP_PORT
+        # SMTP_SSL
+        # SMTP_USERNAME
+        # SMTP_PASSWORD
+        # SHOW_PASSWORD_HINT
+        # WEB_VAULT_ENABLED
+
+    nameOverride: ""
+    fullnameOverride: ""
+
+    service:
+      type: ClusterIP
+      port: 80
+      loadBalancerIP:
+
+    ingress:
+      enabled: true
+      path: /
+      hosts:
+        - bitwarden.colestestserver.com
+      # tls: 
+      #   - secretName: bitwarden-tls
+      #     hosts:
+      #       - bitwarden.example
+
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+    persistence:
+      enabled: true
+      storageClass: default
+      accessMode: ReadWriteOnce
+      size: 800Mi
