@@ -14,7 +14,7 @@ spec:
 
     image:
       repository: mprasil/bitwarden
-      tag: latest
+      tag: 1.9.1-raspberry
       pullPolicy: IfNotPresent
       env:
         SIGNUPS_ALLOWED: true
