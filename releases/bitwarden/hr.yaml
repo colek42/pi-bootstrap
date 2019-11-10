@@ -66,6 +66,6 @@ spec:
 
     persistence:
       enabled: true
-      storageClass: default
+      storageClass: nfs
       accessMode: ReadWriteOnce
       size: 800Mi
