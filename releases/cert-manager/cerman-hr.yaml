@@ -3,7 +3,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: cert-manager
-  namespace: capstone-ingress
+  namespace: cert-manager
   annotations:
     flux.weave.works/automated: "false"
 spec:
