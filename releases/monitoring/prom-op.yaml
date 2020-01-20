@@ -32,7 +32,7 @@ spec:
     grafana:
       image:
         repository: grafana/grafana
-        tag: 6.6.0-beta1-ubuntu
+        tag: master-ubuntu
     ingress:
       enabled: true
       hosts:
