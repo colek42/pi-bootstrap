@@ -24,11 +24,6 @@ spec:
         - name: config
           mountPath: /
           readOnly: true
-        env:
-        - name:
-          value:
-
-
         resources: {}
       volumes:
       - name: config
