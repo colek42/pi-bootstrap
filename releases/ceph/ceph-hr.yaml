@@ -14,6 +14,8 @@ spec:
     version: v1.2.2
   values:
     csi:
+      cephcsi:
+        image: jrefi/ceph-csi
       registrar:
         image: colek42/csi-node-driver-registrar:latest
       snapshotter:
