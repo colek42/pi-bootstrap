@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ddns
+  name: ddns
+  namespace: ddns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ddns
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ddns
+    spec:
+      containers:
+      - image: crazymax/ddns-route53:1.6.0
+        name: ddns-route53
+        resources: {}
