@@ -20,3 +20,5 @@ spec:
         image: colek42/csi-node-driver-registrar:latest
       snapshotter:
         image: jrefi/csi-snapshotter
+      attacher:
+        image: jrefi/csi-attacher
