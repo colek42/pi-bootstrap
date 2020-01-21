@@ -1,31 +1,24 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1beta1
+kind: CronJob
 metadata:
-  creationTimestamp: null
-  labels:
-    app: ddns
   name: ddns
-  namespace: ddns
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: ddns
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: ddns
+  schedule: "*/1 * * * *"
+  jobTemplate:
     spec:
-      containers:
-      - image: crazymax/ddns-route53:1.6.0
-        name: ddns-route53
-        volumenMounts:
-        - name: config
-          mountPath: /
-          readOnly: true
-        resources: {}
-      volumes:
-      - name: config
-        secret:
-          secretName: ddns-route53.yaml
+      template:
+        spec:
+          containers:
+          - image: crazymax/ddns-route53:1.6.0
+            name: ddns-route53
+            command: [/usr/local/bin/ddns-route53]
+            args: [ "--config", "/conf/ddns-route53.yaml" ]
+            volumeMounts:
+            - name: config
+              mountPath: /conf/
+            resources: {}
+          volumes:
+          - name: config
+            secret:
+              secretName: ddns
+          restartPolicy: OnFailure
