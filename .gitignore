@@ -1,3 +1,4 @@
 tmp
 secrets.env
 kubeconfig
+secrets
