@@ -1,4 +1,4 @@
-apiVersion: flux.weave.works/v1beta1
+apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: rook-ceph
@@ -22,3 +22,8 @@ spec:
         image: jrefi/csi-snapshotter
       attacher:
         image: jrefi/csi-attacher
+    image:
+      prefix: rook
+      repository: rook/ceph
+      tag: v1.2.2
+      pullPolicy: IfNotPresent
