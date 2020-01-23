@@ -16,7 +16,7 @@ spec:
     csi:
 
       enableRbdDriver: true
-      enableCephfsDriver: false
+      enableCephfsDriver: true
       enableGrpcMetrics: true
       enableSnapshotter: true
       cephcsi:
