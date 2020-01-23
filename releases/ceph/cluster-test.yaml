@@ -18,3 +18,4 @@ spec:
     # Important: Directories should only be used in pre-production environments
     directories:
     - path: /var/lib/rook
+    

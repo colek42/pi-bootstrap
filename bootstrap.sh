@@ -2,25 +2,31 @@
 
 set -x
 
-user="pi"
-password="raspberry"
+user="ubuntu"
+password="arc1983*"
 
 declare -a master="172.4.20.2"
-declare -a nodes=("172.4.20.3" 
-                "172.4.20.4"
-                "172.4.20.5"
+declare -a nodes=("172.4.20.10" 
+                "172.4.20.11"
+                "172.4.20.12"
                 )
 
 #Download k3sup
 mkdir ./tmp
 
 
-curl -L -o ./tmp/k3sup https://github.com/alexellis/k3sup/releases/download/0.5.12/k3sup
+curl -L -o ./tmp/k3sup https://github.com/alexellis/k3sup/releases/download/0.7.8/k3sup
 chmod +x ./tmp/k3sup
 
 ssh-keygen -b 2048 -t rsa -f ./tmp/pi-ssh-key -q -N ""
 
+ssh-keygen -f "/home/nkennedy/.ssh/known_hosts" -R "172.4.20.2"
+ssh-keygen -f "/home/nkennedy/.ssh/known_hosts" -R "172.4.20.10"
+ssh-keygen -f "/home/nkennedy/.ssh/known_hosts" -R "172.4.20.11"
+ssh-keygen -f "/home/nkennedy/.ssh/known_hosts" -R "172.4.20.12"
 
+
+sshpass -p ${password} ssh -o StrictHostKeyChecking=no ${user}@${master} "rm -f /home/ubuntu/.ssh"
 cat ./tmp/pi-ssh-key.pub | sshpass -p ${password} ssh -o StrictHostKeyChecking=no ${user}@${master} 'mkdir ~/.ssh | true && cat >> ~/.ssh/authorized_keys'
 
 new=$(tr -dc 'A-Z0-9' < /dev/urandom | head -c12)
@@ -39,6 +45,7 @@ ssh -i ./tmp/pi-ssh-key -o StrictHostKeyChecking=no ${user}@${master} "sudo init
 
 for node in "${nodes[@]}"
 do
+    sshpass -p ${password} ssh -o StrictHostKeyChecking=no ${user}@${master} "rm -f /home/ubuntu/.ssh"
 	cat ./tmp/pi-ssh-key.pub | sshpass -p ${password} ssh -o StrictHostKeyChecking=no ${user}@${node} 'mkdir ~/.ssh | true && cat >> ~/.ssh/authorized_keys'
     
     new=$(tr -dc 'A-Z0-9' < /dev/urandom | head -c12)
@@ -56,13 +63,14 @@ do
 
 done
 
-./tmp/k3sup install --ip $master --user pi --ssh-key ./tmp/pi-ssh-key --k3s-extra-args "--no-deploy=traefik"
+./tmp/k3sup install --ip $master --user ${user} --ssh-key ./tmp/pi-ssh-key --k3s-extra-args "--no-deploy=traefik"
 
 sleep 30
 
 for node in "${nodes[@]}"
 do
-    ./tmp/k3sup join --ip $node --server-ip $master --user pi --ssh-key ./tmp/pi-ssh-key
+    ./tmp/k3sup join --ip $node --server-ip $master --user ${user} --ssh-key ./tmp/pi-ssh-key
 done
 
 
+#"cgroup_memory=1 cgroup_enable=memory" 

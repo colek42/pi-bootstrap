@@ -27,6 +27,8 @@ spec:
         image: jrefi/csi-snapshotter
       attacher:
         image: jrefi/csi-attacher
+      provisioner:
+        image: jrefi/csi-provisioner
     image:
       prefix: rook
       repository: rook/ceph
