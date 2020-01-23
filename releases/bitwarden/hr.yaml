@@ -4,7 +4,7 @@ metadata:
   name: bitwarden
   namespace: bitwarden
 spec:
-  releaseName: podinfo-prod
+  releaseName: bitwarden
   chart:
     git: git@github.com:colek42/bitwarden-k8s
     path: /
