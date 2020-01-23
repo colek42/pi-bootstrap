@@ -59,6 +59,6 @@ spec:
 
     persistence:
       enabled: true
-      storageClass: nfs
+      storageClass: rook-ceph-block
       accessMode: ReadWriteOnce
       size: 800Mi
