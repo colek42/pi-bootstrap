@@ -10,7 +10,7 @@ spec:
     path: /
     ref: master
   values:
-    replicaCount: 3
+    replicaCount: 1
 
     image:
       repository: mprasil/bitwarden
