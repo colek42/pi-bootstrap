@@ -15,7 +15,7 @@ spec:
   storage:
     useAllNodes: true
     useAllDevices: false
-    # # Important: Directories should only be used in pre-production environments
-    # directories:
-    # - path: /var/lib/rook
+    # Important: Directories should only be used in pre-production environments
+    directories:
+    - path: /exports
     
