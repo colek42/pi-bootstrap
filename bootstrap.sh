@@ -3,7 +3,7 @@
 set -x
 
 user="ubuntu"
-password="arc1983*"
+password=""
 
 declare -a master="172.4.20.2"
 declare -a nodes=("172.4.20.10" 
@@ -41,11 +41,11 @@ ssh -i ./tmp/pi-ssh-key -o StrictHostKeyChecking=no ${user}@${master} "sudo /usr
 ssh -i ./tmp/pi-ssh-key -o StrictHostKeyChecking=no ${user}@${master} "sudo init 6"
 #ssh -i ./tmp/pi-ssh-key -o StrictHostKeyChecking=no ${user}@${master} "sudo sed -i 's#rootwait#rootwait cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory#' /boot/cmdline.txt"
 
-
+sleep 30
 
 for node in "${nodes[@]}"
 do
-    sshpass -p ${password} ssh -o StrictHostKeyChecking=no ${user}@${master} "rm -f /home/ubuntu/.ssh"
+    sshpass -p ${password} ssh -o StrictHostKeyChecking=no ${user}@${node} "rm -f /home/ubuntu/.ssh"
 	cat ./tmp/pi-ssh-key.pub | sshpass -p ${password} ssh -o StrictHostKeyChecking=no ${user}@${node} 'mkdir ~/.ssh | true && cat >> ~/.ssh/authorized_keys'
     
     new=$(tr -dc 'A-Z0-9' < /dev/urandom | head -c12)
@@ -63,7 +63,7 @@ do
 
 done
 
-./tmp/k3sup install --ip $master --user ${user} --ssh-key ./tmp/pi-ssh-key --k3s-extra-args "--no-deploy=traefik"
+./tmp/k3sup install --ip $master --user ${user} --ssh-key ./tmp/pi-ssh-key --k3s-extra-args='--no-deploy=traefik'
 
 sleep 30
 
