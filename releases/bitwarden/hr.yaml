@@ -59,6 +59,6 @@ spec:
 
     persistence:
       enabled: true
-      storageClass: rook-ceph-block
+      storageClass: rook-ceph-block-01
       accessMode: ReadWriteOnce
       size: 800Mi
