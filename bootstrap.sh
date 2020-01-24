@@ -3,7 +3,7 @@
 set -x
 
 user="ubuntu"
-password=""
+password=${PASSWORD}
 
 declare -a master="172.4.20.2"
 declare -a nodes=("172.4.20.10" 
