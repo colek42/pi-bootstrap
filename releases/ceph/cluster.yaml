@@ -1,13 +1,13 @@
 apiVersion: ceph.rook.io/v1
 kind: CephCluster
 metadata:
-  name: rook-ceph
+  name: rook-ceph-cluster
   namespace: rook-ceph
 spec:
   cephVersion:
     # For the latest ceph images, see https://hub.docker.com/r/ceph/ceph/tags
     image: ceph/ceph:v14.2.6
-  dataDirHostPath: /var/lib/rook
+  dataDirHostPath: /exports
   mon:
     count: 3
   dashboard:
@@ -15,7 +15,7 @@ spec:
   storage:
     useAllNodes: true
     useAllDevices: false
-    # Important: Directories should only be used in pre-production environments
-    directories:
-    - path: /var/lib/rook
+    # # Important: Directories should only be used in pre-production environments
+    # directories:
+    # - path: /var/lib/rook
     
